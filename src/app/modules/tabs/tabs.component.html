@@ -1,0 +1,11 @@
+<ng-container *ngIf="activeTab$ | async as active">
+  <div class="tabs__titles">
+    <span *ngFor="let tab of tabs$ | async; trackBy: trackBy" class="tabs__title" [class.tabs__title--active]="tab === active" (click)="tabsService.setActive(tab)">
+      <ng-container [ngTemplateOutlet]="tab.titleTemplate"></ng-container>
+    </span>
+  </div>
+
+  <div class="tabs__content">
+    <ng-container [ngTemplateOutlet]="active.contentTemplate"></ng-container>
+  </div>
+</ng-container>
